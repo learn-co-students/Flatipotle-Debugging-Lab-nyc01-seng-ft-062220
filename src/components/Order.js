@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Side from './Side'
 
 class Order extends Component {
   state = {
@@ -6,8 +7,10 @@ class Order extends Component {
   }
 
   handleClick = () => {
-    this.state.isClicked = !this.state.isClicked
-  }
+    this.setState(previousState => { return {isClicked: !previousState.isClicked }}
+      )
+    }
+
 
   render() {
     return (
@@ -34,14 +37,12 @@ class Order extends Component {
             :
               <p>No sides</p>
           }
-
-          { /* this is just a shortcut to writing this.state.isClicked ? <Side sides={this.props.sides} /> : null */ }
-          { this.state.isClicked && <Side sides={this.props.sides} /> }
-
+          { this.state.isClicked && <Side sides={ this.props.sides } /> }
         </div>
       </div>
     )
   }
 }
+
 
 export default Order
